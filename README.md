@@ -1,7 +1,6 @@
-# moon.py, based on code by John Walker (http://www.fourmilab.ch/)
-# ported to Python by Kevin Turner <acapnotic@twistedmatrix.com>
-# on June 6, 2001 (JDN 2452066.52491), under a full moon.
-# And gratuitously copied by Chris Nighswonger
+# moon.py Based on code by John Walker (http://www.fourmilab.ch/)
+# Ported to Python by Kevin Turner <acapnotic@twistedmatrix.com> on June 6, 2001 (JDN 2452066.52491), under a full moon.
+# Gratuitously copied by Chris Nighswonger
 
 Python library for calculating the phoses of the moon.
 
