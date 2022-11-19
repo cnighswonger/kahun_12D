@@ -26,6 +26,7 @@ the nearest full moon, new moon, etc.
 
 from bisect import bisect
 from math import sin, cos, floor, sqrt, pi, tan, atan
+import sys
 
 try:
     # get mx from http://www.egenix.com/products/python/mxBase/#Download
@@ -519,4 +520,12 @@ if __name__ == '__main__':
 #        (m.phase_text, m.illuminated * 100, m.age)
 #    print (s)
 
-    
+    class pDate(object):
+        def __init__(self, jdn):
+            self.jdn = jdn
+
+    phase_date = pDate(float(sys.argv[1]))
+    p = phase(phase_date)
+    s = """The moon is %s, %.1f%% illuminated, %.1f days old.""" %\
+        (phase_string(p['phase']), p['illuminated'] * 100, p['age'])
+    print(s)
