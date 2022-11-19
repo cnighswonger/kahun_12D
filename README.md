@@ -1,6 +1,6 @@
-# Based on code by [John Walker](http://www.fourmilab.ch/)
-### Ported to Python by Kevin Turner <acapnotic@twistedmatrix.com> on June 6, 2001 (JDN 2452066.52491), under a full moon.
-###### Gratuitously copied here...
+**Based on code by [John Walker](http://www.fourmilab.ch/)**
+**Ported to Python by [Kevin Turner](mailto:acapnotic@twistedmatrix.com) on June 6, 2001 (JDN 2452066.52491), under a full moon.**
+**Gratuitously copied here...**
 
 Python library for calculating the phoses of the moon.
 
