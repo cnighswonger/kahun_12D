@@ -26,6 +26,10 @@ the nearest full moon, new moon, etc.
 
 from bisect import bisect
 from math import sin, cos, floor, sqrt, pi, tan, atan
+import sys
+import json
+import urllib2
+import csv
 
 try:
     # get mx from http://www.egenix.com/products/python/mxBase/#Download
@@ -519,4 +523,25 @@ if __name__ == '__main__':
 #        (m.phase_text, m.illuminated * 100, m.age)
 #    print (s)
 
-    
+    class pDate(object):
+        def __init__(self, jdn):
+            self.jdn = jdn
+
+    dates = []
+
+    with open(sys.argv[1],'r') as csv_file:
+        reader = csv.reader(csv_file)
+        for row in reader:
+            dates.append(row)
+
+    for day in dates:
+
+        jd = json.load(urllib2.urlopen('https://ssd-api.jpl.nasa.gov/jd_cal.api?cd='+day[0]+'&www=1'))
+
+        print("Date: "+day[0]+" jd: "+jd['jd'])
+
+        phase_date = pDate(float(jd['jd']))
+        p = phase(phase_date)
+        s = """The moon is %s, %.1f%% illuminated, %.1f days old.""" %\
+            (phase_string(p['phase']), p['illuminated'] * 100, p['age'])
+        print(s+'\n\r')
