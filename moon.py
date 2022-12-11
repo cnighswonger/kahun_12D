@@ -30,6 +30,7 @@ import sys
 import json
 import urllib2
 import csv
+import re
 
 try:
     # get mx from http://www.egenix.com/products/python/mxBase/#Download
@@ -537,21 +538,28 @@ if __name__ == '__main__':
 
     for day in dates:
 
-        jd = json.load(urllib2.urlopen('https://ssd-api.jpl.nasa.gov/jd_cal.api?cd='+day[0]+'&www=1'))
+        #jd = json.load(urllib2.urlopen('https://ssd-api.jpl.nasa.gov/jd_cal.api?cd='+day[0]+'&www=1'))
+        ph_date = re.search(r'(-[0-9]{,4})-([0-9]{1,2})-([0-9]{1,2})', day[0])
 
-        print("Date: "+day[0]+" jd: "+jd['jd'])
+        jd = DateTime.JulianDate(int(ph_date.group(1)),int(ph_date.group(2)),int(ph_date.group(3)))
+        jd_cal = str(jd.Julian())
+        jd_day = str(jd.jdn)
 
-        phase_date = pDate(float(jd['jd']))
+        print("Date: "+day[0]+" jd_cal: "+jd_cal+" jd_day: "+jd_day)
+
+        phase_date = pDate(float(jd.jdn))
         p = phase(phase_date)
         s = """The moon is %s, %.1f%% illuminated, %.1f days old.""" %\
             (phase_string(p['phase']), p['illuminated'] * 100, p['age'])
+
+
         (
             new_date,
             q1_date,
             full_date,
             q3_date,
             nextnew_date
-            ) = phase_hunt(DateTime.DateTimeFromJDN(float(jd['jd'])))
+            ) = phase_hunt(jd)
 
         print("New moon for this period: "+new_date.date+" "+new_date.time)
         print(s+'\n\r')
