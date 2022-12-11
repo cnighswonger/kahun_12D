@@ -128,7 +128,9 @@ class AstronomicalConstants:
 
     # 1980 January 0.0 in JDN
     # XXX: DateTime(1980).jdn yields 2444239.5 -- which one is right?
-    epoch = 2444238.5
+    # XXX: ssd-api.jpl.nass.gov agrees with mx.DateTime. -CN
+    #epoch = 2444238.5
+    epoch = 2444239.5
 
     # Ecliptic longitude of the Sun at epoch 1980.0
     ecliptic_longitude_epoch = 278.833540
