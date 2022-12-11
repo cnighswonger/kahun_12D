@@ -561,5 +561,5 @@ if __name__ == '__main__':
             nextnew_date
             ) = phase_hunt(jd)
 
-        print("New moon for this period: "+new_date.date+" "+new_date.time)
+        print("New moon for this period: "+str(new_date.Julian()))
         print(s+'\n\r')
